@@ -20,7 +20,7 @@ export default function Menu() {
                  Depoimentos       
             </MenuItem>
 
-            <MenuItem onClick={() => {}} className="bg-gradient-to-r from-violet-600 via-fuchsia-700 to-violet-950">
+            <MenuItem onClick={() => {}} className="bg-gradient-to-r from-indigo-600 to-cyan-600 cursor-pointer">
                <div className="flex items-center gap-2">
                     <IconBrandGoogle className="text-white" size={12}/>
                     <span className="text-white">Login</span>

@@ -14,7 +14,7 @@ export default function Landing() {
             <Vantagens/>
             <Destaques/>
             <Depoimentos/>
-         <Rodape/>
+            <Rodape/>
        </Pagina>
     )
 }
