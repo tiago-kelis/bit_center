@@ -10,9 +10,9 @@ export default function Landing() {
     return (
        <Pagina>
             <Cabecalho/>
-            <Comuns/>
-            <Vantagens/>
+            <Comuns/>           
             <Destaques/>
+            <Vantagens/>
             <Depoimentos/>
             <Rodape/>
        </Pagina>

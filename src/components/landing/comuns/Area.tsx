@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 interface AreaProps {
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     children?: any
     className?: string
     id?: string
@@ -8,7 +9,7 @@ interface AreaProps {
 export default function Area(props: AreaProps) {
     return (
         <div id={props.id ?? ""} className={`flex justify-center w-full ${props.className ?? ""}`}>
-            <div className={`px-7 xl:px-0 w-full xl:w-[1200px]`}>
+            <div className="px-7 xl:px-0 w-full xl:w-[1200px]">
                 {props.children}
             </div>
         </div>

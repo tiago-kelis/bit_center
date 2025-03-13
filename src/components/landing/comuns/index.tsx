@@ -1,5 +1,7 @@
 export default function Comuns() {
     return(
-        <div></div>
+        <div>
+            
+        </div>
     )
 }
