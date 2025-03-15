@@ -18,7 +18,7 @@ export default function Vantagens() {
             <Vantagem 
                 imagem={Vantagem_2}
                 titulo="Força para Novos desafios"
-                subtitulo="As vantagens nos impulsionam adiante."
+                subtitulo="As vantagens nos impulsionam adiante."                
             />
 
             <Vantagem 

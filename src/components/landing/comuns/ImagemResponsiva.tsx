@@ -5,10 +5,9 @@ import Image from "next/image"
 
 
 
-interface ImagemResponsivaProps {    
-      
-    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-          imagem?: any
+interface ImagemResponsivaProps {       
+   
+    imagem?: any
     className?: string
 }
 

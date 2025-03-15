@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 interface AreaProps {
-    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+ 
     children?: any
     className?: string
     id?: string
