@@ -3,7 +3,7 @@ import {IconBrandGoogle} from "@tabler/icons-react"
 
 export default function Menu() {
     return (
-        <div className="flex gap-2">
+        <div className="flex gap-2 bg-black">
             <MenuItem url="#Iníco" className="hidden sm:flex">
                  Início              
             </MenuItem>

@@ -17,7 +17,7 @@ const transacoesFalsas: Transacao[] = [
     {
         id:Id.Novo(),
         descricao: "Aluguel",
-        data: new Date(2024, 4, 1),
+        data: new Date(2025, 3, 17),
         valor: 8193.36,
         tipo: TipoTransacao.DESPESA
 
@@ -25,14 +25,14 @@ const transacoesFalsas: Transacao[] = [
     {
         id:Id.Novo(),
         descricao: "Conta de Luz",
-        data: new Date(2024, 4, 1),
+        data: new Date(2025, 3, 17),
         valor: 4523.89,
         tipo: TipoTransacao.DESPESA
     },
     {
         id:Id.Novo(),
         descricao: "Extras",
-        data: new Date(2024, 4, 1),
+        data: new Date(2025, 3, 11),
         valor: 600.75,
         tipo: TipoTransacao.RECEITA
     }
