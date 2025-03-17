@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@mantine/core": "^7.15.0",
+    "@mantine/dates": "^7.17.2",
     "@mantine/hooks": "^7.15.0",
     "@tabler/icons-react": "^3.29.0",
     "@tailwindcss/postcss": "^4.0.3",
