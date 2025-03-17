@@ -1,6 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&family=Montserrat:wght@100..900&family=Nunito:wght@200..1000&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -11,15 +9,28 @@
   --foreground: #171717;
 }
 
+/* Modo escuro */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #000;
-    --foreground: #fff;
+    --background: #000000;
+    --foreground: #ffffff;
   }
 }
 
+/* Corpo da página */
 body {
+  @apply text-base leading-relaxed;
   color: var(--foreground);
-  background: var(--background);
-  font-family: Nunito;
+  background-color: var(--background);
+  font-family: 'Nunito', sans-serif; /* Adicione 'sans-serif' para fallback */
+}
+
+/* Ajustes extras, se necessário */
+img {
+  max-width: 100%;
+  border-radius: 0; /* Remove estilos globais conflitantes */
+}
+
+button, input {
+  @apply rounded; /* Bordas arredondadas globais, se necessário */
 }

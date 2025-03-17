@@ -10,6 +10,8 @@ const nextConfig: NextConfig = {
       "lh3.googleusercontent.com",
       'png.pngtree.com', // Adicionado o domínio necessário
       'encrypted-tbn0.gstatic.com', // Adicionado para suportar as imagens fornecidas
+      "img.lovepik.com",
+      "img.freepik.com"
     ]
     
   }
