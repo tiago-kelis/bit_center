@@ -1,10 +1,22 @@
-import "@/styles/globals.css"; // Certifique-se de que o Tailwind está configurado aqui
+import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { MantineProvider } from "@mantine/core";
 
+
+
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <MantineProvider>
+    <MantineProvider
+      theme={{
+        components: {
+          Radio: {
+            styles: {
+              radio: { width: '20px', height: '20px' }, // Aplicado globalmente
+            },
+          },
+        },
+      }}
+    >
       <Component {...pageProps} />
     </MantineProvider>
   );
