@@ -8,3 +8,10 @@ export default interface Transacao {
     tipo: TipoTransacao    
 
 }
+
+export const transacaoVazia = {
+    descricao: "",
+    valor: 0,
+    data: new Date(),
+    tipo: TipoTransacao.DESPESA
+}

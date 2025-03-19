@@ -5,6 +5,7 @@ import Dinheiro from "@/logic/utils/Dinheiro";
 import { Button, TextInput } from "@mantine/core";
 import { DatePickerInput } from "@mantine/dates";
 import { TipoTransacao } from "@/logic/core/financas/TipoTransacao";
+import { useState } from "react";
 
 interface Formularioprops {
   transacao: Transacao;
@@ -14,6 +15,9 @@ interface Formularioprops {
 }
 
 export default function Formulario(props: Formularioprops) {
+
+  const [transacao, setTransacao] = useState(props.transacao)
+
   return (
     <div
       className={`
@@ -25,7 +29,14 @@ export default function Formulario(props: Formularioprops) {
       <div className="flex flex-col gap-4 p-4 sm:p-7 text-zinc-500 ">
         <TextInput
           label="Descrição"
-          value={props.transacao.descricao}
+          value={transacao.descricao}
+
+          onChange={e => setTransacao({
+            ...transacao,
+            descricao: e.currentTarget.value
+
+          })}
+
           styles={{
             input: {
               backgroundColor: "#18181b",
@@ -34,12 +45,12 @@ export default function Formulario(props: Formularioprops) {
               padding: "5px",
               border: "1px solid darkgray",
             },
-          }}
+          }}          
         />
 
         <TextInput
           label="Valor"
-          value={Dinheiro.formatar(props.transacao.valor)}
+          value={Dinheiro.formatar(transacao.valor)}
           styles={{
             input: {
               backgroundColor: "#18181b",
@@ -53,7 +64,7 @@ export default function Formulario(props: Formularioprops) {
 
         <DatePickerInput
           label="Data"
-          value={props.transacao.data}
+          value={transacao.data}
           locale="pt-BR"
           valueFormat="DD/MM/YYYY"
           styles={{
@@ -75,8 +86,8 @@ export default function Formulario(props: Formularioprops) {
                 type="radio"
                 name="tipo"
                 value="RECEITA"
-                checked={props.transacao.tipo === TipoTransacao.RECEITA}
-                onChange={() => (props.transacao.tipo = TipoTransacao.RECEITA)}
+                checked={transacao.tipo === TipoTransacao.RECEITA}
+                onChange={() => (transacao.tipo = TipoTransacao.RECEITA)}
                 className="w-4 h-4 text-green-500 border-gray-300 focus:ring-green-600"
                 />
                 <span className="text-white">Receita</span>
@@ -87,8 +98,8 @@ export default function Formulario(props: Formularioprops) {
                 type="radio"
                 name="tipo"
                 value="DESPESA"
-                checked={props.transacao.tipo === TipoTransacao.DESPESA}
-                onChange={() => (props.transacao.tipo = TipoTransacao.DESPESA)}
+                checked={transacao.tipo === TipoTransacao.DESPESA}
+                onChange={() => (transacao.tipo = TipoTransacao.DESPESA)}
                 className="w-4 h-4 text-red-500 border-gray-300 focus:ring-red-600"
                 />
                 <span className="text-white">Despesas</span>
@@ -96,28 +107,28 @@ export default function Formulario(props: Formularioprops) {
 
         </div>
 
-        <div className="flex px-4 sm:px-7 py-4 gap-3 bg-zinc-800 rounded-md">
+        <div className="flex px-3 sm:px-7 py-3 gap-3 bg-zinc-800 rounded-md">
           <Button
             className="bg-green-500 p-2 text-black"
             color="green"
-            onClick={() => props.salvar?.(props.transacao)}
+            onClick={() => props.salvar?.(transacao)}
           >
             Salvar
           </Button>
 
           <Button
-            className="bg-zinc-700 p-2 text-black"
+            className="bg-yellow-600 p-2 text-black"
             color="gray"
             onClick={props.cancelar}
           >
             Voltar
           </Button>
 
-          {props.transacao.id && (
+          {transacao.id && (
             <Button
               className="bg-red-700 p-2 text-black"
               color="red"
-              onClick={() => props.excluir?.(props.transacao)}
+              onClick={() => props.excluir?.(transacao)}
             >
               Excluir
             </Button>
