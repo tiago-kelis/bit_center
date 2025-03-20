@@ -5,6 +5,7 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
+    "noImplicitAny": false, // Permite o uso de 'any' sem gerar erros
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",

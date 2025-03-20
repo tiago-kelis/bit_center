@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import "dayjs/locale/pt-br";
 import Transacao from "@/logic/core/financas/Transacao";
 import Dinheiro from "@/logic/utils/Dinheiro";
 import { Button, TextInput } from "@mantine/core";
 import { DatePickerInput } from "@mantine/dates";
 import { TipoTransacao } from "@/logic/core/financas/TipoTransacao";
-import { useState } from "react";
+import useFormulario from "@/data/hooks/useFormulario";
 
 interface Formularioprops {
   transacao: Transacao;
@@ -16,7 +15,7 @@ interface Formularioprops {
 
 export default function Formulario(props: Formularioprops) {
 
-  const [transacao, setTransacao] = useState(props.transacao)
+  const {dados, alterarDados, alterarAtributo} = useFormulario(props.transacao)
 
   return (
     <div
@@ -29,14 +28,8 @@ export default function Formulario(props: Formularioprops) {
       <div className="flex flex-col gap-4 p-4 sm:p-7 text-zinc-500 ">
         <TextInput
           label="Descrição"
-          value={transacao.descricao}
-
-          onChange={e => setTransacao({
-            ...transacao,
-            descricao: e.currentTarget.value
-
-          })}
-
+          value={dados.descricao}
+          onChange={alterarAtributo("descricao")}            
           styles={{
             input: {
               backgroundColor: "#18181b",
@@ -50,7 +43,8 @@ export default function Formulario(props: Formularioprops) {
 
         <TextInput
           label="Valor"
-          value={Dinheiro.formatar(transacao.valor)}
+          value={Dinheiro.formatar(dados.valor)}
+          onChange={alterarAtributo("valor", Dinheiro.desformatar)}
           styles={{
             input: {
               backgroundColor: "#18181b",
@@ -64,9 +58,9 @@ export default function Formulario(props: Formularioprops) {
 
         <DatePickerInput
           label="Data"
-          value={transacao.data}
+          value={dados.data}
           locale="pt-BR"
-          valueFormat="DD/MM/YYYY"
+          valueFormat="DD/MM/YYYY"         
           styles={{
             input: {
               backgroundColor: "#18181b",
@@ -85,9 +79,10 @@ export default function Formulario(props: Formularioprops) {
                 <input
                 type="radio"
                 name="tipo"
-                value="RECEITA"
-                checked={transacao.tipo === TipoTransacao.RECEITA}
-                onChange={() => (transacao.tipo = TipoTransacao.RECEITA)}
+                value="RECEITA"               
+                onChange={() => (dados.tipo = TipoTransacao.RECEITA, alterarAtributo(TipoTransacao.RECEITA))}
+                // checked={dados.tipo === TipoTransacao.RECEITA}
+                
                 className="w-4 h-4 text-green-500 border-gray-300 focus:ring-green-600"
                 />
                 <span className="text-white">Receita</span>
@@ -97,9 +92,9 @@ export default function Formulario(props: Formularioprops) {
                 <input
                 type="radio"
                 name="tipo"
-                value="DESPESA"
-                checked={transacao.tipo === TipoTransacao.DESPESA}
-                onChange={() => (transacao.tipo = TipoTransacao.DESPESA)}
+                value="DESPESA"               
+                onChange={() => (dados.tipo = TipoTransacao.DESPESA, alterarAtributo(TipoTransacao.DESPESA))}
+                // checked={dados.tipo === TipoTransacao.DESPESA}
                 className="w-4 h-4 text-red-500 border-gray-300 focus:ring-red-600"
                 />
                 <span className="text-white">Despesas</span>
@@ -111,7 +106,7 @@ export default function Formulario(props: Formularioprops) {
           <Button
             className="bg-green-500 p-2 text-black"
             color="green"
-            onClick={() => props.salvar?.(transacao)}
+            onClick={() => props.salvar?.(dados)}
           >
             Salvar
           </Button>
@@ -124,11 +119,11 @@ export default function Formulario(props: Formularioprops) {
             Voltar
           </Button>
 
-          {transacao.id && (
+          {dados.id && (
             <Button
               className="bg-red-700 p-2 text-black"
               color="red"
-              onClick={() => props.excluir?.(transacao)}
+              onClick={() => props.excluir?.(dados)}
             >
               Excluir
             </Button>
