@@ -1,23 +1,19 @@
-import "@/styles/globals.css";
-import type { AppProps } from "next/app";
-import { MantineProvider } from "@mantine/core";
-
-
+import '../styles/globals.css'
+import type { AppProps } from 'next/app'
+import { MantineProvider } from '@mantine/core'
+import { CentralDeAcessoProvider } from '../data/contexts/CentralDeAcessoContext'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <MantineProvider
+      defaultColorScheme="dark" // Nova propriedade em v7
       theme={{
-        components: {
-          Radio: {
-            styles: {
-              radio: { width: '20px', height: '20px' }, // Aplicado globalmente
-            },
-          },
-        },
+        primaryColor: 'blue',
       }}
     >
-      <Component {...pageProps} />
+      <CentralDeAcessoProvider>
+        <Component {...pageProps} />
+      </CentralDeAcessoProvider>
     </MantineProvider>
-  );
+  )
 }

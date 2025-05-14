@@ -1,6 +1,6 @@
 import { TipoTransacao } from "./TipoTransacao"
 
-export default interface Transacao {
+export default interface Transacoes {
     id?: string
     descricao: string
     valor: number

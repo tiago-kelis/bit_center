@@ -1,8 +1,9 @@
-
-
 export default interface Usuario {
     id: string
     nome: string
     email: string
-    imageUrl: string | null
+    provedor: string
+    imagemUrl?: string
+    cpf?: string
+    telefone?: string
 }

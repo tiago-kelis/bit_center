@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import ForcarAutenticacao from "../autenticacao/ForcarAutenticacao"
+
 interface PaginaProps {
     externa?: boolean
     children: any
@@ -6,10 +7,17 @@ interface PaginaProps {
 }
 
 export default function Pagina(props: PaginaProps) {
-    return (
-        <div className="flex flex-col min-h-screen bg-gradient-to-r from-zinc-900 via-black to-zinc-900">
-            {props.children}
-        </div>
+    function renderizarConteudo() {
+        return (
+            <div className={`pagina ${props.className ?? ''}`}>
+                {props.children}
+            </div>
+        )
+    }
+
+    return props.externa ? renderizarConteudo() : (
+        <ForcarAutenticacao>
+            {renderizarConteudo()}
+        </ForcarAutenticacao>
     )
 }
-

@@ -1,4 +1,5 @@
 import usuario from "@/data/constants/UsuarioFalso";
+import useCentralDeAcesso from "@/data/hooks/useCentralDeAcesso";
 import { Avatar, Menu } from "@mantine/core";
 import { IconArrowsRightLeft, IconLogout, IconUser } from "@tabler/icons-react";
 import Link from "next/link";
@@ -11,9 +12,8 @@ interface MenuUsuarioProps {
 
 export default function MenuUsuario(props: MenuUsuarioProps) {
 
-    function logout() {
-        console.log("logout")
-    }
+     const { usuario, logout } = useCentralDeAcesso()
+
 
 
     return (

@@ -2,9 +2,9 @@ import Transacao from "@/logic/core/financas/Transacao"
 import { useState } from "react"
 
 
-export default function useFormulario(dadosInicial: Transacao) {
+export default function useFormulario<T = any>(dadosInicial: T) {
 
-    const [dados, setDados] = useState(dadosInicial)
+    const [dados, setDados] = useState<T>(dadosInicial)
 
     function alterarAtributo(atributo: string, fn?: Function) {
         return (valorOUEvento: any) => {

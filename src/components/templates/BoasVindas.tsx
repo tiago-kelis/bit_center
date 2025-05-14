@@ -1,22 +1,12 @@
-import UsuarioFalso from "@/data/constants/UsuarioFalso"
+import useCentralDeAcesso from "../../data/hooks/useCentralDeAcesso"
 
+// https://unicode-table.com/en/1F44B/
 
-export default function BoaVindas() {
-
-  const usuario = UsuarioFalso
-
-  function renderizarNome() {
-        return (
-            <span className="hidden sm:inline">
-            {usuario?.nome?.split(" ")[0]}
-            </span>  
-        )
-
-   }
-
+export default function BoasVindas() {
+    const { usuario } = useCentralDeAcesso()
     return (
-        <div className={`text-3xl font-black`}>
-            Olá {renderizarNome()} 👋
+        <div className={`text-white text-3xl font-black`}>
+            Olá <span className="hidden sm:inline">{usuario?.nome?.split(' ')[0]}</span> 👋
         </div>
     )
 }
