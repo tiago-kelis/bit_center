@@ -5,12 +5,13 @@ import useCentralDeAcesso from "./useCentralDeAcesso"
 
 export default function useTransacoes() {
     const { usuario } = useCentralDeAcesso()
-    
+
     // Usando useRef para manter a referência estável de financas
     const financasRef = useRef(new ServicosFinancas())
     
     const [data, setData] = useState<Date>(new Date())
     const [transacoes, setTransacoes] = useState<Transacao[]>([])
+
 
     // Movido _atualizarTransacoes para antes de _consultarTransacoes e aplicado useCallback
     const _atualizarTransacoes = useCallback(async (transacoesAtualizadas: Transacao[]) => {
@@ -23,15 +24,18 @@ export default function useTransacoes() {
         setTransacoes(apenasDoMes)
     }, [usuario, data])
 
+
     const _consultarTransacoes = useCallback(async () => {
         if (!usuario) return
         const transacoesConsultadas = await financasRef.current.consultarPorMes(usuario, data)
         _atualizarTransacoes(transacoesConsultadas)
     }, [usuario, data, _atualizarTransacoes]);
 
+
     useEffect(() => {
         _consultarTransacoes()
     }, [_consultarTransacoes]);
+    
 
     function atualizarData(novaData: Date) {
         setData(novaData)

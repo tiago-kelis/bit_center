@@ -45,7 +45,7 @@ export default class Autenticacao {
             nome: usuarioFirebase.displayName ?? nomeAlternativo,
             email: usuarioFirebase.email!,
             provedor: usuarioFirebase.providerData[0].providerId,
-            imagemUrl: usuarioFirebase.photoURL ?? undefined,
+            imageUrl: usuarioFirebase.photoURL ?? undefined,
         }
     }
 }

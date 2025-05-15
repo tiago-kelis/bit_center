@@ -18,12 +18,12 @@ export default function CadastroDeUsuario() {
 	const { usuario: usuarioAtual, atualizarUsuario } = useCentralDeAcesso()
 	const { dados, alterarAtributo } = useFormulario<Usuario>(usuarioAtual?? {} as Usuario)
 
-	// useEffect(() => {
-	// 	if (!usuarioAtual) return
+	useEffect(() => {
+		if (!usuarioAtual) return
 		
-	// 	atualizarUsuario(usuarioAtual)
+		atualizarUsuario(usuarioAtual)
 		
-	// }, [usuarioAtual])
+	}, [usuarioAtual])
 
 	async function salvar(alterarAtributo: string) {
 		if (!usuarioAtual) return
