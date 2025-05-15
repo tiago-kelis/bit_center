@@ -12,8 +12,9 @@ interface MenuUsuarioProps {
 
 export default function MenuUsuario(props: MenuUsuarioProps) {
 
-     const { usuario, logout } = useCentralDeAcesso()
+    const { usuario, logout } = useCentralDeAcesso()
 
+    //titulo_1: "finanças", titulo_2: "Meus Dados", titulo_3: "Sair"
 
 
     return (
