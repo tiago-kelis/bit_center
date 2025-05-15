@@ -1,4 +1,4 @@
-import { createContext, useCallback, useEffect, useState } from "react"
+import { createContext, useEffect, useState } from "react"
 import router from 'next/router'
 import cookie from 'js-cookie'
 import Usuario from "../../logic/core/usuario/Usuario"

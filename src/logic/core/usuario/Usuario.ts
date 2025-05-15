@@ -3,7 +3,7 @@ export default interface Usuario {
     nome: string
     email: string
     provedor: string
-    imagemUrl?: string
+    imageUrl?: string
     cpf?: string
     telefone?: string
 }

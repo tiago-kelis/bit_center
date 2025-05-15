@@ -5,8 +5,6 @@ import Cabecalho from "../templates/Cabecalho";
 import Conteudo from "../templates/Conteudo";
 import Pagina from "../templates/Pagina";
 import Lista from "./Lista";
-import Transacao, { transacaoVazia } from "@/logic/core/financas/Transacao";
-import TransacoesFalsas from "@/data/constants/TransacoesFalsas";
 import Formulario from "./Formulario";
 import NaoEncontrado from "../templates/NaoEncontrado";
 import Id from "@/logic/core/comun/Id";
@@ -16,10 +14,11 @@ import servicos from "@/logic/core";
 import CentralDeAcessoContext from "@/data/contexts/CentralDeAcessoContext";
 import CampoMesAno from "../templates/CampoMesAno";
 import useTransacoes from "@/data/hooks/useTransacoes";
+import Transacao from "@/logic/core/financas/Transacao";
 
 export default function Financas() {
    const { usuario } = useContext(CentralDeAcessoContext);
-   const [transacoes, setTransacoes] = useState<Transacao[]>(TransacoesFalsas);
+   const [transacoes, setTransacoes] = useState<Transacao[]>([]);
    const [transacao, setTransacao] = useState<Transacao | null>(null);  
 
    const {data, alterarData} = useTransacoes();
@@ -71,7 +70,7 @@ export default function Financas() {
             />
             <Button
                className={`bg-blue-500`}                
-               onClick={() => setTransacao(transacaoVazia)}
+               onClick={() => setTransacao(transacao)}
             >
                <div className="flex justify-center p-1 gap-3">
                   <IconPlus className="bg-green-600 rounded-full"/>

@@ -5,6 +5,7 @@ import useCentralDeAcesso from "./useCentralDeAcesso"
 
 export default function useTransacoes() {
     const { usuario } = useCentralDeAcesso()
+    
     // Usando useRef para manter a referência estável de financas
     const financasRef = useRef(new ServicosFinancas())
     
