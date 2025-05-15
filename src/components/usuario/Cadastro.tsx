@@ -4,26 +4,33 @@ import Cabecalho from "../templates/Cabecalho"
 import Conteudo from "../templates/Conteudo"
 import Cpf from "../../logic/utils/Cpf"
 import MiniFormulario from "../templates/MiniFormulario"
-import Pagina from "../templates/Pagina"
-// import servicos from "../../logic/core"
 import Telefone from "../../logic/utils/Telefone"
 import Texto from "../../logic/utils/Texto"
 import TituloSecao from "../templates/TituloSecao"
 import useCentralDeAcesso from "../../data/hooks/useCentralDeAcesso"
 import useFormulario from "../../data/hooks/useFormulario"
 import  Usuario from "../../logic/core/usuario/Usuario"
+import Pagina from "../templates/Pagina"
+import { useEffect } from "react"
 
 
-export default function CadastroUsuario() {
+export default function CadastroDeUsuario() {
 	const { usuario: usuarioAtual, atualizarUsuario } = useCentralDeAcesso()
 	const { dados, alterarAtributo } = useFormulario<Usuario>(usuarioAtual?? {} as Usuario)
 
-	async function salvar(atributo: string) {
+	// useEffect(() => {
+	// 	if (!usuarioAtual) return
+		
+	// 	atualizarUsuario(usuarioAtual)
+		
+	// }, [usuarioAtual])
+
+	async function salvar(alterarAtributo: string) {
 		if (!usuarioAtual) return
 		
 		const novoUsuario = {
 			...usuarioAtual,
-			[atributo]: dados[atributo as keyof Usuario]
+			[alterarAtributo]: dados[alterarAtributo as keyof Usuario]
 		}
 	
 		await atualizarUsuario(novoUsuario)
@@ -32,7 +39,7 @@ export default function CadastroUsuario() {
 	return (
 		<Pagina>
 			<Cabecalho />
-			<Conteudo className="gap-5">
+			<Conteudo className="gap-5 mt-5">
 				<TituloSecao
 					icone={<IconForms />}
 					principal="Dados Cadastrais"

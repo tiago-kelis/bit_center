@@ -27,7 +27,7 @@ export default function MenuUsuario(props: MenuUsuarioProps) {
                     <Avatar
                     className="w-10 h-10"
                     radius="xl"
-                    src={usuario?.imageUrl ?? ""}
+                    src={usuario?.imagemUrl ?? ""}
                     />
             </div>
             </Menu.Target>

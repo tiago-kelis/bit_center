@@ -14,11 +14,15 @@ import { Button } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
 import servicos from "@/logic/core";
 import CentralDeAcessoContext from "@/data/contexts/CentralDeAcessoContext";
+import CampoMesAno from "../templates/CampoMesAno";
+import useTransacoes from "@/data/hooks/useTransacoes";
 
 export default function Financas() {
    const { usuario } = useContext(CentralDeAcessoContext);
    const [transacoes, setTransacoes] = useState<Transacao[]>(TransacoesFalsas);
    const [transacao, setTransacao] = useState<Transacao | null>(null);  
+
+   const {data, alterarData} = useTransacoes();
 
    function salvar(transacao: Transacao) {
       if (!usuario) {
@@ -61,6 +65,10 @@ export default function Financas() {
       <Pagina>
          <Cabecalho/>
          <Conteudo className="gap-5">
+            <CampoMesAno 
+               data={data}
+               dataMudou={alterarData}
+            />
             <Button
                className={`bg-blue-500`}                
                onClick={() => setTransacao(transacaoVazia)}
