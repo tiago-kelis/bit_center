@@ -2,6 +2,7 @@ import CentralDeAcessoContext from "@/data/contexts/CentralDeAcessoContext";
 import MenuItem from "./MenuItem";
 import {IconBrandGoogle} from "@tabler/icons-react"
 import { useContext } from "react";
+import Area from "../comuns/Area";
 
 export default function Menu() {
 
@@ -10,7 +11,7 @@ export default function Menu() {
 
 
     return (
-        <div className="flex gap-2 bg-black">
+         <div className="flex gap-2 bg-black">
             <MenuItem url="#Iníco" className="hidden sm:flex">
                  Início              
             </MenuItem>

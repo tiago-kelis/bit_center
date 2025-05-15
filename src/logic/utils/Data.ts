@@ -41,4 +41,26 @@ export default class Data {
     static ultimoDia(dt: Date) {
         return new Date(dt.getFullYear(), dt.getMonth() + 1, 0, 23, 59, 59)
     }
+
+        static diaMes = {
+        formatar(data: Date, menor?: boolean): string {
+            return data?.toLocaleDateString?.(
+                Data._lingua, {
+                    day: '2-digit',
+                    month: menor ? '2-digit' : 'short',
+                } as Intl.DateTimeFormatOptions
+            )
+        }
+    }
+
+    static mesAno = {
+        formatar(data: Date, menor?: boolean): string {
+            return data?.toLocaleDateString?.(
+                Data._lingua, {
+                    month: menor ? 'short' : 'long',
+                    year: 'numeric',
+                } as Intl.DateTimeFormatOptions
+            )
+        }
+    }
 }
