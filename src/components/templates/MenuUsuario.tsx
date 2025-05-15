@@ -1,4 +1,4 @@
-import usuario from "@/data/constants/UsuarioFalso";
+
 import useCentralDeAcesso from "@/data/hooks/useCentralDeAcesso";
 import { Avatar, Menu } from "@mantine/core";
 import { IconArrowsRightLeft, IconLogout, IconUser } from "@tabler/icons-react";
