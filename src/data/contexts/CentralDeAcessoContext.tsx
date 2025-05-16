@@ -24,36 +24,101 @@ const CentralDeAcessoContext = createContext<CentralDeAcessoContextProps>({
 export function CentralDeAcessoProvider(props: any) {
     const [pronto, setPronto] = useState<boolean>(false)
     const [usuario, setUsuario] = useState<Usuario | null>(null)
+    const [erro, setErro] = useState<any>(null)
 
     useEffect(() => {
-        const cancelar = servicos.usuario.monitorarAutenticacao(usuario => {
-            _autenticar(usuario)
+        try {
+            // Definir um timeout para garantir que não fique preso carregando
+            const timeoutId = setTimeout(() => {
+                if (!pronto) {
+                    console.warn("Timeout na autenticação - forçando estado 'pronto'")
+                    setPronto(true)
+                    router.push('/') // Redirecionar para a página inicial
+                }
+            }, 10000) // 10 segundos de timeout
+            
+            const cancelar = servicos.usuario.monitorarAutenticacao(usuario => {
+                try {
+                    _autenticar(usuario)
+                    setPronto(true)
+                    clearTimeout(timeoutId) // Limpar o timeout se autenticação for bem-sucedida
+                } catch (e) {
+                    console.error("Erro durante autenticação:", e)
+                    setErro(e)
+                    setPronto(true) // Marcar como pronto mesmo com erro
+                    router.push('/') // Redirecionar para a página inicial
+                    clearTimeout(timeoutId)
+                }
+            })
+            
+            return () => {
+                cancelar()
+                clearTimeout(timeoutId)
+            }
+        } catch (e) {
+            console.error("Erro ao configurar monitoramento de autenticação:", e)
+            setErro(e)
+            setPronto(true) // Marcar como pronto mesmo com erro
+            router.push('/') // Redirecionar para a página inicial
+        }
+    }, [])
+
+    // Observar mudanças de erro para redirecionamento
+    useEffect(() => {
+        if (erro && !pronto) {
             setPronto(true)
-        })
-        return () => cancelar()
-    }, [_autenticar, setPronto, servicos.usuario])
+            router.push('/')
+        }
+    }, [erro])
 
     async function atualizarUsuario(novoUsuario: Usuario) {
-        if (usuario && usuario.email !== novoUsuario.email) return logout()
-        if (usuario && novoUsuario && usuario.email === novoUsuario.email) {
-            await servicos.usuario.salvar(novoUsuario)
-            setUsuario(novoUsuario)
+        try {
+            if (usuario && usuario.email !== novoUsuario.email) return logout()
+            if (usuario && novoUsuario && usuario.email === novoUsuario.email) {
+                await servicos.usuario.salvar(novoUsuario)
+                setUsuario(novoUsuario)
+            }
+        } catch (e) {
+            console.error("Erro ao atualizar usuário:", e)
+            // Se for erro de permissão ou quota, fazer logout
+            if (e instanceof Error && 
+                (e.message.includes('permission') || e.message.includes('quota'))) {
+                await logout()
+            }
         }
     }
 
     async function loginGoogle() {
-        const usuario = await servicos.usuario.loginGoogle()
-        if (!usuario) return null
+        try {
+            const usuario = await servicos.usuario.loginGoogle()
+            if (!usuario) return null
 
-        await _autenticar(usuario)
-        router.push('/')
+            await _autenticar(usuario)
+            router.push('/')
 
-        return usuario
+            return usuario
+        } catch (e) {
+            console.error("Erro ao fazer login com Google:", e)
+            setErro(e)
+            setPronto(true)
+            router.push('/')
+            return null
+        }
     }
 
     async function logout() {
-        await servicos.usuario.logout()
-        await _autenticar(null)
+        try {
+            await servicos.usuario.logout()
+            await _autenticar(null)
+            router.push('/')
+        } catch (e) {
+            console.error("Erro ao fazer logout:", e)
+            // Em caso de erro no logout, forçar limpeza local
+            setUsuario(null)
+            _configurarSessao(false)
+            setPronto(true)
+            router.push('/')
+        }
     }
 
     function _autenticar(usuario: Usuario | null) {

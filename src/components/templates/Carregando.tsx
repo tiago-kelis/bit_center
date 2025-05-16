@@ -1,15 +1,15 @@
 import Image from 'next/image'
-import loading from '../../../public/loading.gif'
+import loading from '../../../public/loading-5.gif'
 
 export default function Carregando() {
     return (
-        <div className='pagina justify-center items-center'>
+        <div className='flex justify-center items-center mt-52'>
             <Image
                 priority
                 src={loading}
                 alt="loading"
-                width={40}
-                height={40}
+                width={300}
+                height={300}
             />
         </div>
     )
