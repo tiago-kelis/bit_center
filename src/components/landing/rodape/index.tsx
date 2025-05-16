@@ -13,7 +13,7 @@ export default function Rodape() {
             </div>
             <div className="flex text-zinc-600 items-center gap-20">
               <RedeSociais/>
-              <div> <span className="text-3xl text-indigo-800">Code</span> Todos os direiros reservados {new Date().getFullYear()} ® </div>
+              <div> <span className="text-3xl text-indigo-800">SkyGen</span> Todos os direiros reservados {new Date().getFullYear()} ® </div>
             </div>
         </div>              
       </Area>
