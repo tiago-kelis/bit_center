@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useEffect, useState, useRef } from "react"
 import Transacao from "../../logic/core/financas/Transacao"
 import ServicosFinancas from "../../logic/core/financas/ServicosFinancas"
@@ -5,6 +6,7 @@ import useCentralDeAcesso from "./useCentralDeAcesso"
 import servicos from "@/logic/core"
 import router from "next/router"
 
+export type TipoExibir = "lista" | "grade"
 
 export default function useTransacoes() {
     const { usuario } = useCentralDeAcesso()
@@ -12,8 +14,11 @@ export default function useTransacoes() {
     const financasRef = useRef(new ServicosFinancas())
     
     const [data, setData] = useState<Date>(new Date())
+    const [tipoExibir, setTipoExibir] = useState<TipoExibir>("lista")
     const [transacoes, setTransacoes] = useState<Transacao[]>([])
     const [transacao, setTransacao] = useState<Transacao | null>(null)
+
+
 
     // Função para carregar transações ao iniciar ou mudar a data
     const carregarTransacoes = useCallback(async () => {
@@ -26,6 +31,7 @@ export default function useTransacoes() {
         }
     }, [usuario, data])
 
+
     // Adiciona a função selecionar para uma única transação (corrige o erro de tipagem)
     const selecionar = useCallback((transacao: Transacao | null) => {
         setTransacao(transacao)
@@ -34,7 +40,7 @@ export default function useTransacoes() {
     // Efeito para carregar transações quando usuário ou data mudar
     useEffect(() => {
         carregarTransacoes()
-    }, [carregarTransacoes])
+    }, [data, carregarTransacoes])
 
 
 
@@ -47,6 +53,7 @@ export default function useTransacoes() {
     // Verificar explicitamente se estamos editando ou criando
     const editando = !!transacao.id
     console.log('Operação:', editando ? 'Editando' : 'Criando nova transação')
+    
     
     try {
         // Salvar e receber a transação atualizada com ID
@@ -100,9 +107,11 @@ export default function useTransacoes() {
         data,
         transacoes,
         transacao,
-        selecionar, 
+        tipoExibir,        
+        selecionar,         
         salvar,
         excluir,
-        alterarData: setData
+        alterarData: setData,
+        alterarTipoExibicao: setTipoExibir,
     }
 }
