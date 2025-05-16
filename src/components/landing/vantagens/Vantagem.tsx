@@ -17,9 +17,9 @@ export default function Vantagem (props: VantagemProps) {
         <div className={`flex flex-col justify-around items-center w-full gap-4
             ${props.inverter ? "sm:flex-row-reverse" : "sm:flex-row"}
         `}>
-            <ImagemResponsiva 
+           <ImagemResponsiva 
                 imagem={props.imagem} 
-                className={props.inverter ? "rotate-6 sm:-rotate-6" : "-rotate-6 sm:rotate-6"}
+                className={props.inverter ? "rotate-6" : "-rotate-6"}
             />
 
             <div className={`
