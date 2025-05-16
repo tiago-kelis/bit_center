@@ -62,10 +62,7 @@ export default function useTransacoes() {
 
                 // Redirecionar para a página de finanças se solicitado
         if (redirect) {
-            // Garantir que o email está codificado corretamente para a URL
-            const emailEncoded = encodeURIComponent(usuario.email);
-            // Usar a estrutura de rota semelhante ao seu caminho do Firestore
-            router.push(`/financas/${emailEncoded}/transacoes`);
+          router.back()
         }
         
             

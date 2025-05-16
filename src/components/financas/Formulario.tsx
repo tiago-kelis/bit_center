@@ -122,6 +122,7 @@ const handleDateChange = (e) => {
             className="bg-green-500 p-2 text-black"
             color="green"
             onClick={() => props.salvar?.(dados)}
+            
           >
             Salvar
           </Button>
