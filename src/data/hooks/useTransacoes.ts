@@ -3,6 +3,7 @@ import Transacao from "../../logic/core/financas/Transacao"
 import ServicosFinancas from "../../logic/core/financas/ServicosFinancas"
 import useCentralDeAcesso from "./useCentralDeAcesso"
 import servicos from "@/logic/core"
+import router from "next/router"
 
 
 export default function useTransacoes() {
@@ -37,7 +38,7 @@ export default function useTransacoes() {
 
 
 
-    async function salvar(transacao: Transacao) {
+    async function salvar(transacao: Transacao, redirect = true) {
     if (!usuario) {
         console.error("Usuário não está logado!")
         return
@@ -58,8 +59,17 @@ export default function useTransacoes() {
         })
         
         setTransacao(null)
+
+        // Redirecionar para a página de finanças se solicitado
+        if (redirect) {
+            router.push('/financas');
+        }
+            
+        return true;
+
     } catch (error) {
         console.error("Erro ao salvar transação:", error)
+        return false
     }
 }
 
