@@ -60,10 +60,14 @@ export default function useTransacoes() {
         
         setTransacao(null)
 
-        // Redirecionar para a página de finanças se solicitado
+                // Redirecionar para a página de finanças se solicitado
         if (redirect) {
-            router.push('/financas');
+            // Garantir que o email está codificado corretamente para a URL
+            const emailEncoded = encodeURIComponent(usuario.email);
+            // Usar a estrutura de rota semelhante ao seu caminho do Firestore
+            router.push(`/financas/${emailEncoded}/transacoes`);
         }
+        
             
         return true;
 
