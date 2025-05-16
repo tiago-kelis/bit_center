@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { createContext, useEffect, useState } from "react"
 import router from 'next/router'
 import cookie from 'js-cookie'
@@ -30,7 +31,7 @@ export function CentralDeAcessoProvider(props: any) {
             setPronto(true)
         })
         return () => cancelar()
-    }, [])
+    }, [_autenticar, setPronto, servicos.usuario])
 
     async function atualizarUsuario(novoUsuario: Usuario) {
         if (usuario && usuario.email !== novoUsuario.email) return logout()

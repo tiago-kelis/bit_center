@@ -1,4 +1,3 @@
-import Transacao from "@/logic/core/financas/Transacao"
 import { useState } from "react"
 
 

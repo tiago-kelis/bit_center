@@ -20,17 +20,17 @@ export default function MenuUsuario(props: MenuUsuarioProps) {
     return (
         <Menu>
             <Menu.Target>
-            <div className="flex py-1.5 items-center gap-2 cursor-pointer">
-                    <div className="hidden md:flex flex-col select-none">
-                        <span className="text:sm font-bold text-zinc-300">{usuario?.nome}</span>
-                        <span className="text-xs text-zinc-500">{usuario?.email}</span>
-                    </div>
-                    <Avatar
-                    className="w-10 h-10"
-                    radius="xl"
-                    src={usuario?.imageUrl ?? ""}
-                    />
-            </div>
+                <div className="flex py-1.5 items-center gap-2 cursor-pointer">
+                        <div className="hidden md:flex flex-col select-none">
+                            <span className="text:sm font-bold text-zinc-300">{usuario?.nome}</span>
+                            <span className="text-xs text-zinc-500">{usuario?.email}</span>
+                        </div>
+                        <Avatar
+                        className="w-10 h-10"
+                        radius="xl"
+                        src={usuario?.imageUrl ?? ""}
+                        />
+                </div>
             </Menu.Target>
 
             <Menu.Dropdown className=" flex flex-col absolute z-50 items-center justify-center bg-zinc-800 w-60 pr-3 pl-3 shadow-lg rounded">                

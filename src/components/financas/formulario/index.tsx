@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import 'dayjs/locale/pt-br'
 import { Button, Modal, Radio, Switch, TextInput } from "@mantine/core"
 import { DatePickerInput } from '@mantine/dates' // Modificado: DatePickerInput em vez de DatePicker
@@ -35,9 +36,10 @@ export default function FormularioTransacao(props: FormularioTransacaoProps) {
         props.transacao as TransacaoFormulario ?? transacaoVazia
     )
 
-    useEffect(() => {
-        alterarDados(props.transacao as TransacaoFormulario ?? transacaoVazia)
-    }, [props.transacao])
+   useEffect(() => {
+    console.log("Transação recebida no formulário:", props.transacao)
+    alterarDados(props.transacao as TransacaoFormulario ?? transacaoVazia)
+}, [props.transacao])
 
     async function salvar() {
         if (props.transacaoAlterada) {
@@ -92,7 +94,7 @@ export default function FormularioTransacao(props: FormularioTransacaoProps) {
                         value={Dinheiro.formatar(dados.valor)}
                         onChange={alterarAtributo('valor', Dinheiro.desformatar)}
                     />
-                    {/* Substituindo DatePicker por DatePickerInput */}
+                  
                     <DatePickerInput
                         label="Data"
                         value={dados.data}

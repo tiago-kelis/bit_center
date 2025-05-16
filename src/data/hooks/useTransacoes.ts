@@ -3,7 +3,7 @@ import Transacao from "../../logic/core/financas/Transacao"
 import ServicosFinancas from "../../logic/core/financas/ServicosFinancas"
 import useCentralDeAcesso from "./useCentralDeAcesso"
 import servicos from "@/logic/core"
-import Id from "@/logic/core/comun/Id"
+
 
 export default function useTransacoes() {
     const { usuario } = useCentralDeAcesso()
@@ -35,26 +35,36 @@ export default function useTransacoes() {
         carregarTransacoes()
     }, [carregarTransacoes])
 
-    function salvar(transacao: Transacao) {
-        if (!usuario) {
-            console.error("Usuário não está logado!")
-            return
-        }
+
+
+    async function salvar(transacao: Transacao) {
+    if (!usuario) {
+        console.error("Usuário não está logado!")
+        return
+    }
+    
+    // Verificar explicitamente se estamos editando ou criando
+    const editando = !!transacao.id
+    console.log('Operação:', editando ? 'Editando' : 'Criando nova transação')
+    
+    try {
+        // Salvar e receber a transação atualizada com ID
+        const transacaoComId = await servicos.financas.salvar(usuario, transacao)
         
-        const outrasTransacoes = transacoes.filter(t => t.id !== transacao.id)
-        
-        const transacaoAtualizada = {
-            ...transacao,
-            id: transacao.id ?? Id.Novo()
-        }
-        
-        setTransacoes([...outrasTransacoes, transacaoAtualizada])
-        
-        // Corrigido: Primeiro o usuário, depois a transação
-        servicos.financas.salvar(usuario, transacaoAtualizada)
+        // Atualizar o estado com a transação retornada do Firebase
+        setTransacoes(transacaoAtual => {
+            const outrasTransacoes = transacaoAtual.filter(t => t.id !== transacaoComId.id)
+            return [...outrasTransacoes, transacaoComId]
+        })
         
         setTransacao(null)
+    } catch (error) {
+        console.error("Erro ao salvar transação:", error)
     }
+}
+
+   
+
 
     function excluir(transacao: Transacao) {
         if (!usuario || !transacao.id) {
@@ -79,7 +89,7 @@ export default function useTransacoes() {
         data,
         transacoes,
         transacao,
-        selecionar, // Retorna a nova função selecionar
+        selecionar, 
         salvar,
         excluir,
         alterarData: setData

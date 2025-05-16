@@ -2,7 +2,6 @@ import "dayjs/locale/pt-br";
 import Transacao from "@/logic/core/financas/Transacao";
 import Dinheiro from "@/logic/utils/Dinheiro";
 import { Button, TextInput } from "@mantine/core";
-import { DatePickerInput } from "@mantine/dates";
 import { TipoTransacao } from "@/logic/core/financas/TipoTransacao";
 import useFormulario from "@/data/hooks/useFormulario";
 
@@ -13,9 +12,31 @@ interface Formularioprops {
   cancelar?: () => void;
 }
 
+
 export default function Formulario(props: Formularioprops) {
 
-  const {dados, alterarDados, alterarAtributo} = useFormulario(props.transacao)
+
+
+const formatDateForInput = (date) => {
+  if (!(date instanceof Date) || isNaN(date.getTime())) return '';
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
+
+const handleDateChange = (e) => {
+  const inputDate = e.target.value;
+  if (inputDate) {
+    const [year, month, day] = inputDate.split('-').map(Number);
+    const newDate = new Date(year, month - 1, day);
+    // Usando o alterarAtributo que já vem do seu hook
+    alterarAtributo('data')(newDate);
+  }
+};
+
+
+  const {dados, alterarAtributo} = useFormulario(props.transacao)
 
   return (
     <div
@@ -56,22 +77,16 @@ export default function Formulario(props: Formularioprops) {
           }}
         />
 
-        <DatePickerInput
-          label="Data"
-          value={dados.data}
-          locale="pt-BR"
-          valueFormat="DD/MM/YYYY"         
-          styles={{
-            input: {
-              backgroundColor: "#18181b",
-              color: "#ffffff",
-              width: "100%",
-              padding: "5px",
-              border: "1px solid darkgray",
-              textAlign: "left",
-            },
-          }}
-        />
+        / E então no JSX do seu componente, substitua o DatePickerInput por:
+        <div>
+          <label className="block text-zinc-500 mb-1">Data</label>
+          <input
+            type="date"
+            value={formatDateForInput(dados.data)}
+            onChange={handleDateChange}
+            className="w-full bg-zinc-800 text-white p-2 rounded border border-zinc-700"
+          />
+        </div>
 
         <div className="flex items-center gap-8 mb-8">
 

@@ -11,6 +11,7 @@ import { Button } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
 import CampoMesAno from "../templates/CampoMesAno";
 import useTransacoes from "@/data/hooks/useTransacoes";
+import { TipoTransacao } from "@/logic/core/financas/TipoTransacao";
 
 
 export default function Financas() {
@@ -27,15 +28,27 @@ export default function Financas() {
                data={data}
                dataMudou={alterarData}
             />
+
             <Button
                className={`bg-blue-500`}                
-               onClick={() => selecionar(transacoes.length ? transacoes[0] : null)}
+               onClick={() => {
+                  // Criar uma transação nova e vazia (sem ID)
+                  const novaTransacao = {
+                     descricao: '',
+                     valor: 0,
+                     data: new Date(),
+                     tipo: TipoTransacao.DESPESA
+                     // SEM ID!
+                  }
+                  selecionar(novaTransacao)
+               }}
             >
                <div className="flex justify-center p-1 gap-3">
                   <IconPlus className="bg-green-600 rounded-full"/>
                   Nova transacão
                </div>
             </Button>
+           
             
             {transacao ? (
                <Formulario
