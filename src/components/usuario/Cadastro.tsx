@@ -47,13 +47,13 @@ export default function CadastroDeUsuario() {
             borderColor: '#3f3f46',
             color: 'white',
             width: '100%',
-            padding: "5px"
+            padding: "3px"
         }
     };
 
     return (
         <Pagina>            
-            <Conteudo className="gap-5 mt-5">
+            <Conteudo className="gap-2 -mt-7">
                 <TituloSecao
                     icone={<IconForms />}
                     principal="Dados Cadastrais"

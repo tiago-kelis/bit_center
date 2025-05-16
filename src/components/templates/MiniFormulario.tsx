@@ -19,12 +19,12 @@ export default function MiniFormulario(props: MiniFormularioProps) {
             text-white overflow-hidden
             border border-zinc-700 rounded-lg
             w-full max-w-full
-            bg-gradient-to-r from-zinc-900 to-zinc-800 p-3
+            bg-gradient-to-r from-zinc-900 to-zinc-800 p-3 
         `}>
             <div className="flex flex-col p-3">
-                <div className="text-3xl font-black">{props.titulo}</div>
-                <div className="mt-4 text-zinc-400 border border-zinc-600 p-2 rounded-md">{props.sub}</div>
-                <div className="mt-3 w-full">
+                <div className="text-md font-black">{props.titulo}</div>
+                <div className=" text-zinc-400 border border-zinc-600 p-2 rounded-md">{props.sub}</div>
+                <div className=" w-full">
                     {props.children}
                 </div>
             </div>

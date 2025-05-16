@@ -45,8 +45,8 @@ const handleDateChange = (e) => {
         rounded-xl overflow-hidden
       `}
     >
-      <div className="bg-black py-3 px-7 text-zinc-500">Formulário</div>
-      <div className="flex flex-col gap-4 p-4 sm:p-7 text-zinc-500 ">
+      <div className="bg-black py-2 px-3 text-zinc-500">Formulário</div>
+      <div className="flex flex-col gap-4 p-3 sm:p-7 text-zinc-500 ">
         <TextInput
           label="Descrição"
           value={dados.descricao}
@@ -79,16 +79,16 @@ const handleDateChange = (e) => {
 
         / E então no JSX do seu componente, substitua o DatePickerInput por:
         <div>
-          <label className="block text-zinc-500 mb-1">Data</label>
+          <label className="block text-zinc-500">Data</label>
           <input
             type="date"
             value={formatDateForInput(dados.data)}
             onChange={handleDateChange}
-            className="w-full bg-zinc-800 text-white p-2 rounded border border-zinc-700"
+            className="w-full bg-zinc-800 text-white rounded border border-zinc-700"
           />
         </div>
 
-        <div className="flex items-center gap-8 mb-8">
+        <div className="flex items-center gap-3 mb-3">
 
           <label className="flex items-center gap-2">
                 <input

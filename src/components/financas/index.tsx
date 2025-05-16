@@ -98,7 +98,7 @@ export default function Financas() {
    return (
       <Pagina>
          <Cabecalho/>
-         <Conteudo className="gap-5">            
+         <Conteudo className="gap-3">            
 
            {renderizarControle()}
             

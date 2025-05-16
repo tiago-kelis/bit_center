@@ -46,7 +46,7 @@ export default function Lista(props: ListaProps) {
         <div className={`
             flex flex-col
             border border-zinc-700
-            rounded-xl overflow-hidden
+            rounded-xl overflow-hidden cursor-pointer
         `}>
             {props.transacoes.map(renderizarLinha)}
         </div>

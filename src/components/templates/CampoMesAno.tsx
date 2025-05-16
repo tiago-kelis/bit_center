@@ -64,7 +64,7 @@ export default function CampoMesAno(props: CampoMesAnoProps) {
 
                 </Popover.Target>
                 <Popover.Dropdown>
-                   <div className="border border-zinc-200 p-3 rounded-md ml-4 -mt-[19.9rem] bg-zinc-900">
+                   <div className="border border-zinc-200 p-3 rounded-md ml-4 -mt-[12.9rem] bg-zinc-900">
                         <div className="flex justify-center mb-5 text-zinc-800">
                            
                            <div className="flex items-center">

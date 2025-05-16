@@ -24,7 +24,7 @@ export default function TransacaoItem(props: TransacaoItemProps) {
                 transacao={props.transacao}
                 transacaoAlterada={props.transacaoAlterada}
                 transacaoExcluida={props.transacaoExcluida}
-                className="flex items-center gap-3 w-full"
+                className="flex items-center gap-3 w-full "
             >
                 <div className={`
                     hidden sm:flex justify-center items-center
@@ -51,7 +51,7 @@ export default function TransacaoItem(props: TransacaoItemProps) {
                     {Dinheiro.formatar(props.transacao.valor)}
                 </span>
             </FormularioTransacao>
-            <span className="hidden sm:block w-11">
+            <span className="hidden sm:block w-11 ">
                 <Switch
                     className="flex"
                     checked={props.transacao.tipo === TipoTransacao.RECEITA}
