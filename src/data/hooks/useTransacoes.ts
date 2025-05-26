@@ -69,7 +69,7 @@ export default function useTransacoes() {
 
                 // Redirecionar para a página de finanças se solicitado
         if (redirect) {
-          router.back()
+          router.push('/')
         }
         
             
