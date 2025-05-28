@@ -21,7 +21,7 @@ export default function Depoimentos() {
                     <Depoimento
                        avatar="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgPqIuqI16d_gNruBel-EPg1VrpBeAzNmE35poXpl5em0iIledZwZtlplF3_iGWjxrin0&usqp=CAU"
                        nome="Raquel Ventura"
-                       titulo="Infermeira"
+                       titulo="Enfermeira"
                        texto="Esatava sempre faltando algo ao tentar pagar as contas"
                     />
 
